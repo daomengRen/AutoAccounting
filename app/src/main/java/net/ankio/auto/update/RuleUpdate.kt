@@ -47,14 +47,13 @@ class RuleUpdate(private val context: Activity) : BaseUpdate(context) {
     override var github = "https://api.github.com/repos/AutoAccountingOrg/${repo}/releases/latest"
 
     override fun onCheckedUpdate() {
-        download = if (ConfigUtils.getString(
+        download = when (ConfigUtils.getString(
                 Setting.UPDATE_CHANNEL,
                 UpdateChannel.GithubProxy.name
-            ) != UpdateChannel.Cloud.name
-        ) {
-            switchGithub("AutoAccountingOrg/$repo/releases/download/$version/$version.zip")
-        } else {
-            pan() + "/$version.zip"
+            )) {
+            UpdateChannel.Local.name -> "https://github.com/daomengRen/Rules/raw/refs/heads/main/rule.zip"
+            UpdateChannel.Cloud.name -> pan() + "/$version.zip"
+            else -> switchGithub("AutoAccountingOrg/$repo/releases/download/$version/$version.zip")
         }
     }
 
