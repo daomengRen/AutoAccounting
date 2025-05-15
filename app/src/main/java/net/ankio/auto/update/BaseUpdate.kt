@@ -76,15 +76,33 @@ abstract class BaseUpdate(context: Activity) {
     suspend fun check(showToast: Boolean = false): Boolean {
         Logger.d("检查更新中")
 
-        val list = if (ConfigUtils.getString(
-                Setting.UPDATE_CHANNEL,
-                UpdateChannel.GithubRaw.name
-            ) !== UpdateChannel.Cloud.name
-        ) {
-            checkVersionFromGithub(ruleVersion())
-        } else {
-            checkVersionFromPan(ruleVersion())
+        val updateChannel = ConfigUtils.getString(
+            Setting.UPDATE_CHANNEL,
+            UpdateChannel.GithubRaw.name
+        )
+
+        // 如果是本地导入，直接返回 false，不需要检查版本
+        if (updateChannel == UpdateChannel.Local.name) {
+            if (showToast) {
+                ToastUtils.info(R.string.no_need_to_update)
+            }
+            return false
         }
+
+        val list = when (updateChannel) {
+            UpdateChannel.Cloud.name -> checkVersionFromPan(ruleVersion())
+            else -> checkVersionFromGithub(ruleVersion())
+        }
+        
+        // val list = if (ConfigUtils.getString(
+        //         Setting.UPDATE_CHANNEL,
+        //         UpdateChannel.GithubRaw.name
+        //     ) !== UpdateChannel.Cloud.name
+        // ) {
+        //     checkVersionFromGithub(ruleVersion())
+        // } else {
+        //     checkVersionFromPan(ruleVersion())
+        // }
 
         version = list[0]
         log = list[1]
