@@ -174,7 +174,7 @@ def sign_apk(absolute_path,workspace):
     sign_apk_file = absolute_path.replace('.apk', '-signed.apk')
     subprocess.run([
         apkSigner, 'sign',
-        '--ks', workspace+'/.github/workflows/key',
+        '--ks', workspace+'/.github/workflows/key.keystore',
         '--ks-key-alias', os.getenv("SIGN_ALIAS"),
         '--ks-pass', 'pass:'+os.getenv("SIGN_PASSWORD"),
         '--key-pass', 'pass:' + os.getenv("SIGN_PASSWORD"),
