@@ -719,6 +719,7 @@ class SettingDetailFragment : BaseFragment() {
                 selectList = hashMapOf(
                     requireContext().getString(R.string.update_channel_github_raw) to UpdateChannel.GithubRaw.name,
                     requireContext().getString(R.string.update_channel_cloud) to UpdateChannel.Cloud.name,
+                    requireContext().getString(R.string.update_channel_local) to UpdateChannel.Local.name,
                     requireContext().getString(R.string.update_channel_github_proxy) to UpdateChannel.GithubProxy.name,
                     requireContext().getString(R.string.update_channel_github_proxy2) to UpdateChannel.GithubProxy2.name,
                     requireContext().getString(R.string.update_channel_github_mirror) to UpdateChannel.GithubMirror.name,
