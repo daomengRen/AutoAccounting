@@ -33,7 +33,7 @@ jobs:
           pip install requests md2tgmd  && python .github/workflows/main.py
         env:
           # 工作目录  os.getenv("GITHUB_WORKSPACE") or os.getcwd()
-          GITHUB_WORKSPACE: ${{ env.GITHUB_WORKSPACE }}  
+          GITHUB_WORKSPACE: ${{ secrets.GITHUB_WORKSPACE }}  
           # cloud.ankio.net 发送到 网盘 使用   不需要
           ALIST_TOKEN: ${{ secrets.ALIST_TOKEN }}
           #  forum.ez-book.org 发送到 论坛 使用  不需要
