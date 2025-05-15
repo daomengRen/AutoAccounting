@@ -427,7 +427,7 @@ def notify(title,channel,workspace):
 def main(repo):
     channel = os.getenv('CHANNEL') or 'Stable'
     print(f"渠道: {channel}")
-    workspace = os.getenv("WORKSPACE") or os.getcwd()
+    workspace = os.getenv("GITHUB_WORKSPACE") or os.getcwd()
     print(f"工作目录: {workspace}")
     tag = get_latest_tag_with_prefix(channel)
     print(f"最新 tag: {tag}")
