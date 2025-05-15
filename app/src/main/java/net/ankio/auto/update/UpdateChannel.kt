@@ -23,5 +23,6 @@ enum class UpdateChannel {
     GithubMirror,
     GithubD,
     GithubKK,
-    Cloud
+    Cloud,
+    Local
 }
