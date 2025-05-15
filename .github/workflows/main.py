@@ -431,10 +431,10 @@ def main(repo):
     print(f"工作目录: {workspace}")
     tag = get_latest_tag_with_prefix(channel)
     print(f"最新 tag: {tag}")
-    commits = get_commits_since_tag(tag)
-    if len(commits) == 0:
-        print("没有新的提交，无需构建")
-        sys.exit(0)
+    # commits = get_commits_since_tag(tag)
+    # if len(commits) == 0:
+    #     print("没有新的提交，无需构建")
+    #     sys.exit(0)
     tagVersionName = get_and_set_version(channel,workspace)
     print(f"新的版本号: {tagVersionName}")
     restart = get_changed_files_since_tag(tag)
