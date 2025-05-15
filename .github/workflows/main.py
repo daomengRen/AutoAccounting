@@ -445,4 +445,4 @@ def main(repo):
     # notify(tagVersionName, channel, workspace)
     #create_tag(tagVersionName, channel)
 
-main("AutoAccountingOrg/AutoAccounting")
+main("daomengRen/AutoAccounting")
