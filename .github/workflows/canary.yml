@@ -31,13 +31,20 @@ jobs:
         run: |
           pip install requests md2tgmd  && python .github/workflows/main.py
         env:
-          GITHUB_WORKSPACE: ${{ env.GITHUB_WORKSPACE }}
+          # 工作目录  os.getenv("GITHUB_WORKSPACE") or os.getcwd()
+          GITHUB_WORKSPACE: ${{ env.GITHUB_WORKSPACE }}  
+          # cloud.ankio.net 发送到 网盘 使用   不需要
           ALIST_TOKEN: ${{ secrets.ALIST_TOKEN }}
+          #  forum.ez-book.org 发送到 论坛 使用  不需要
           FORUMS_API_KEY: ${{ secrets.FORUMS_API_KEY }}
           BUILD_TOOLS_VERSION: 34.0.0
+          # sign_apk 打包apk的时候使用
           SIGN_ALIAS: ${{ secrets.SIGN_ALIAS }}
           SIGN_PASSWORD: ${{ secrets.SIGN_PASSWORD }}
+          # 结束
+          # GitHub token 发布到 Github 使用  需要
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # TELEGRAM  发送到 TELEGRAM 使用  不需要
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           CHANNEL: Canary
 
