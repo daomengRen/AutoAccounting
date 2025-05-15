@@ -5,7 +5,7 @@ on:
   workflow_dispatch:
   # 每隔3小时触发构建，以便快速发版，验证错误
   schedule:
-    - cron: '0 */3 * * *'
+    - cron: '0 */12 * * *'
 
 
 permissions: write-all
