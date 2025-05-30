@@ -151,6 +151,11 @@ def run_command_live(command):
 def build_apk(workspace):
     print("开始构建 APK")
     gradlew_path = os.path.join(workspace, 'gradlew')
+
+    # 确保 dist 目录存在
+    dist_dir = os.path.join(workspace, "dist")
+    os.makedirs(dist_dir, exist_ok=True)
+    
     # 构建 APK
     for flavor in flavors:
         assemble_task = f"assemble{flavor.capitalize()}Release"
@@ -159,6 +164,12 @@ def build_apk(workspace):
 
         apk_source_path = os.path.join(workspace, 'app', 'build', 'outputs', 'apk', flavor, 'release', 'app.apk')
         apk_dest_path = os.path.join(workspace,"dist", f'app-{flavor}.apk')
+
+        # 检查源文件是否存在
+        if not os.path.exists(apk_source_path):
+            print(f"错误：APK 文件未生成，路径不存在: {apk_source_path}")
+            sys.exit(1)
+            
         subprocess.run(['cp', apk_source_path, apk_dest_path], check=True)
         print(f"{flavor} 版本的 APK 文件已保存到: {apk_dest_path}, 开始签名")
         sign_apk(apk_dest_path,workspace)
