@@ -452,6 +452,7 @@ def main(repo):
     # logs = build_logs(commits,workspace)
     # log_data = write_logs(logs,workspace,channel,tagVersionName,repo,restart)
     build_apk(workspace)
+    log_data = "No changelog provided"  # 或空字符串 ""
     publish_apk(repo, tagVersionName,workspace,log_data,channel)
     # notify(tagVersionName, channel, workspace)
     #create_tag(tagVersionName, channel)
