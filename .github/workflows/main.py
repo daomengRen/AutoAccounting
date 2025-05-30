@@ -217,7 +217,7 @@ def create_tag(tag,channel):
 """
 def publish_apk(repo, tag_name,workspace,log,channel):
     publish_to_github(repo, tag_name,  tag_name, log,f"{workspace}/dist/",False if channel == 'Stable' else True)
-    publish_to_pan(workspace,tag_name,channel)
+    # publish_to_pan(workspace,tag_name,channel)
     pass
 
 def upload(filename, filename_new, channel):
